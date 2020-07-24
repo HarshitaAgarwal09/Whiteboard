@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    overflow: hidden;
+}
+
 .toolbar{
     display: flex;
     /* background-color:  #e0876a; */
