@@ -5,18 +5,8 @@ function createSticky() {
     const textarea = document.createElement("textarea");
     textarea.style.resize = "none";
     writingPad.appendChild(textarea);
-
-
-    // textarea.addEventListener("mousemove", function (e) {
-    //     let { width, height } = textarea.getBoundingClientRect();
-    //     document.querySelector(".sticky-pad").style.height = height;
-    //     document.querySelector(".sticky-pad").style.width = width;
-    //     document.querySelector(".nav").style.width = width;
-    //     console.log(width + " " + height);
-    // })
 }
 
-createSticky();
 //utility function
 function createBox() {
 
@@ -37,7 +27,7 @@ function createBox() {
     navBar.appendChild(close);
     stickyPad.appendChild(navBar);
     stickyPad.appendChild(writingPad);
-    body.appendChild(stickyPad);
+    board.appendChild(stickyPad);
 
     close.addEventListener("click", function () {
         stickyPad.remove();
@@ -46,7 +36,7 @@ function createBox() {
     let isMinimized = false;
     minimize.addEventListener("click", function () {
         isMinimized == false
-            ? writingPad.style.display = "node"
+            ? writingPad.style.display = "none"
             : writingPad.style.display = "block";
         isMinimized = !isMinimized;
     });
@@ -56,14 +46,12 @@ function createBox() {
     let isStickyDown = false;
 
     navBar.addEventListener("mousedown", function (e) {
-        console.log("mousedown")
         initialX = e.clientX;
         initialY = e.clientY;
         isStickyDown = true;
     })
 
     navBar.addEventListener("mousemove", function (e) {
-        console.log("mousemove");
         if (isStickyDown == true) {
             let finalX = e.clientX;
             let finalY = e.clientY;
@@ -75,21 +63,12 @@ function createBox() {
             stickyPad.style.top = top + diffY + "px";
             stickyPad.style.left = left + diffX + "px";
 
-            // console.log("initial" + initialX + " " + initialY);
-            // console.log("final" + finalX + " " + finalY);
-            // console.log("topleft" + top + " " + left);
-
-            // console.log("diffY" + diffX + " " + diffY);
-            // console.log("style" + stickyPad.style.top + " " + stickyPad.style.left);
-
             initialX = finalX;
             initialY = finalY;
         }
     })
 
     navBar.addEventListener("mouseup", function () {
-        console.log("mouseup")
-
         isStickyDown = false;
     })
 

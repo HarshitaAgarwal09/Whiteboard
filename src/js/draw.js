@@ -17,7 +17,8 @@ board.addEventListener("mousedown", function (e) {
         y: e.clientY - top,
         identifier: "mousedown",
         color: ctx.strokeStyle,
-        width: ctx.lineWidth
+        width: ctx.lineWidth,
+        globalCompositeOperation: ctx.globalCompositeOperation
     }
 
     undoStack.push(point);
@@ -25,7 +26,7 @@ board.addEventListener("mousedown", function (e) {
 
 //when we are draw on canvas board;
 board.addEventListener("mousemove", function (e) {
-    if (isMouseDown == true && ActiveTool == "pencil") {
+    if (isMouseDown == true) {
         let top = getLocation();
         ctx.lineTo(e.clientX, e.clientY - top);
         ctx.stroke();
@@ -34,24 +35,17 @@ board.addEventListener("mousemove", function (e) {
             y: e.clientY - top,
             identifier: "mousemove",
             color: ctx.strokeStyle,
-            width: ctx.lineWidth
+            width: ctx.lineWidth,
+            globalCompositeOperation: ctx.globalCompositeOperation
         }
+        if (redoStack.length > 0) redoStack = [];
         undoStack.push(point);
         redraw();
     }
-
 });
 
 //when we are done drawing on canvas board;
 board.addEventListener("mouseup", function (e) {
-    // let point = {
-    //     x: e.clientX,
-    //     y: e.clientY - top,
-    //     identifier: "mousemove",
-    //     color: ctx.strokeStyle,
-    //     width: ctx.lineWidth
-    // }
-    // undoStack.push(point);
     isMouseDown = false;
 })
 
@@ -59,10 +53,11 @@ function redraw() {
     ctx.clearRect(0, 0, board.width, board.height);
 
     for (let i = 0; i < undoStack.length; i++) {
-        let { x, y, identifier, color, width } = undoStack[i];
+        let { x, y, identifier, color, width, globalCompositeOperation } = undoStack[i];
 
         ctx.strokeStyle = color;
         ctx.lineWidth = width;
+        ctx.globalCompositeOperation = globalCompositeOperation;
 
         if (identifier == "mousedown") {
             ctx.beginPath();
@@ -72,6 +67,13 @@ function redraw() {
             ctx.lineTo(x, y);
             ctx.stroke();
         }
+    }
+
+    if (ActiveTool == "pencil") {
+        ctx.globalCompositeOperation = "source-over";
+    }
+    else if (ActiveTool == "eraser") {
+        ctx.globalCompositeOperation = "destination-out";
     }
 }
 

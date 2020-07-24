@@ -79,18 +79,19 @@ function handleToolChange(tool) {
             isActiveErsOp = false;
             pencilOptions.classList.remove("show")
             ctx.globalCompositeOperation = "destination-out";
-            ctx.lineWidth = inputs[1].value;
+            ctx.lineWidth = inputs[0].value;
         }
 
         if (isActiveErsOp) eraserOptions.classList.remove("show");
         else eraserOptions.classList.add("show");
     }
-    else if (tool == "sticky-note") {
-        createSticky();
-    }
     else {
+
         pencilOptions.classList.remove("show");
         eraserOptions.classList.remove("show");
+        if (tool == "sticky-note") {
+            createSticky();
+        }
     }
     ActiveTool = tool;
 

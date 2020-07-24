@@ -1,3 +1,12 @@
 #redo-img{
     transform: scaleX(-1);
 }
+
+.input-img{
+    display: none;
+}
+
+
+.unploadImgStyle{
+   width: 100%;
+}
