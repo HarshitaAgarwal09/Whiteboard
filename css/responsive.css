@@ -27,7 +27,7 @@
         transform: scale(0.7) rotate(-90deg);
         top:46vh;
         left:-45vw;
-        width:110%;
+        width: 120%;
     }
     .tool-img{
         transform: scale(0.7) rotate(90deg);

@@ -3,18 +3,23 @@ let isMouseDown = false;
 let undoStack = [];
 let redoStack = [];
 
+
+
 //when we start to draw on canvas board;
-board.addEventListener("mousedown", function (e) {
+const boardMouseDownHandler = function (e) {
     isMouseDown = true;
     //Start Draw;
     ctx.beginPath();
     let top = getLocation();
 
+    let positionX = e.targetTouches ? e.touches[0].clientX : e.clientX;
+    let positionY = e.targetTouches ? e.touches[0].clientY : e.clientY;
+
     //moves to a location without drawing ;
-    ctx.moveTo(e.clientX, e.clientY - top);
+    ctx.moveTo(positionX, positionY - top);
     let point = {
-        x: e.clientX,
-        y: e.clientY - top,
+        x: positionX,
+        y: positionY - top,
         identifier: "mousedown",
         color: ctx.strokeStyle,
         width: ctx.lineWidth,
@@ -22,17 +27,26 @@ board.addEventListener("mousedown", function (e) {
     }
 
     undoStack.push(point);
-});
+};
+
+board.addEventListener("mousedown", boardMouseDownHandler);
+board.addEventListener("touchstart", boardMouseDownHandler);
+
+
 
 //when we are draw on canvas board;
-board.addEventListener("mousemove", function (e) {
+const boardMouseMoveHandler = function (e) {
     if (isMouseDown == true) {
         let top = getLocation();
-        ctx.lineTo(e.clientX, e.clientY - top);
+
+        let positionX = e.targetTouches ? e.touches[0].clientX : e.clientX;
+        let positionY = e.targetTouches ? e.touches[0].clientY : e.clientY;
+
+        ctx.lineTo(positionX, positionY - top);
         ctx.stroke();
         let point = {
-            x: e.clientX,
-            y: e.clientY - top,
+            x: positionX,
+            y: positionY - top,
             identifier: "mousemove",
             color: ctx.strokeStyle,
             width: ctx.lineWidth,
@@ -42,12 +56,22 @@ board.addEventListener("mousemove", function (e) {
         undoStack.push(point);
         redraw();
     }
-});
+}
+
+board.addEventListener("mousemove", boardMouseMoveHandler);
+board.addEventListener("touchmove", boardMouseMoveHandler);
+
+
 
 //when we are done drawing on canvas board;
-board.addEventListener("mouseup", function (e) {
+const boardMouseUpHandler = function (e) {
     isMouseDown = false;
-})
+}
+
+board.addEventListener("mouseup", boardMouseUpHandler);
+board.addEventListener("touchend", boardMouseUpHandler);
+
+
 
 function redraw() {
     ctx.clearRect(0, 0, board.width, board.height);
@@ -80,7 +104,7 @@ function redraw() {
 function getLocation() {
     // console.log(board.getBoundingClientRect());
     const { top } = board.getBoundingClientRect();
-    return top; s
+    return top;
 }
 
 
@@ -108,24 +132,40 @@ function redoMarker() {
     return false;
 }
 
-undo.addEventListener("mousedown", function () {
+
+const undoMouseDownHandler = function () {
     // continously fires a function
     interval = setInterval(function () {
         undoMarker();
     }, 50);
-})
+}
+undo.addEventListener("mousedown", undoMouseDownHandler)
+undo.addEventListener("touchstart", undoMouseDownHandler)
 
-undo.addEventListener("mouseup", function () {
+
+
+const undoMouseUpHandler = function () {
     clearInterval(interval);
-})
+}
+undo.addEventListener("mouseup", undoMouseUpHandler)
+undo.addEventListener("touchend", undoMouseUpHandler)
 
-redo.addEventListener("mousedown", function () {
+
+
+const redoMouseDownHandler = function () {
     // continously fires a function
     interval = setInterval(function () {
         redoMarker();
     }, 50);
-})
+}
+redo.addEventListener("mousedown", redoMouseDownHandler)
+redo.addEventListener("touchstart", redoMouseDownHandler)
 
-redo.addEventListener("mouseup", function () {
+
+
+const redoMouseUpHandler = function () {
     clearInterval(interval);
-})
+}
+
+redo.addEventListener("mouseup", redoMouseUpHandler)
+redo.addEventListener("touchend", redoMouseUpHandler)
