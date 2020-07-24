@@ -8,63 +8,98 @@
     <link rel="stylesheet" href="./css/menuIcon.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/images.css">
+    <link rel="stylesheet" href="./css/stickynote.css">
 </head>
 
 <body>
 
     <div class="container">
         <div class="toolbar">
-            <div class="menu-icon is-active">
+
+            <div class="menu-icon is-active" id="menu-icon">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
             </div>
+
             <div class="tool-panel add-animation">
                 <div class="tool active">
-                    <img src="icons/pencil.svg" alt="pencil" class="tool-img" id="pencil-img">
+                    <img src="icons/pencil.svg" alt="pencil" class="tool-img" id="pencil-img"
+                        onclick="handleLocalToolChange('pencil')">
 
-                    <div class="tool-options pencil">
-                        <div class="pencil-size"></div>
+                    <div class=" tool-options pencil">
+                        <div class="pencil-size">
+                            <input type="range" id="pen-size" min="5" max="30" value="5"
+                                onchange="handleSizeChange(this.value)">
+                        </div>
+                        <div class="pencil-color">
+                            <div class="color red" onclick="handleColorChange('red')"></div>
+                            <div class="color blue" onclick="handleColorChange('blue')"></div>
+                            <div class="color green" onclick="handleColorChange('green')"></div>
+                            <br>
+                            <input type="color" id="color-palette" value="#D22D2D"
+                                onchange="handleColorChange(this.value)">
+                        </div>
                     </div>
                 </div>
+                <!-- <div class=" tool shapes">
+                    <img src=" icons/geometry.svg" alt="shapes" class="tool-img" id="shapes"
+                        onclick="handleLocalToolChange('shapes')">
+                </div> -->
                 <div class="tool ">
-                    <img src="icons/eraser.svg" alt="eraser" class="tool-img" id="eraser-img">
+                    <img src="icons/eraser.svg" alt="eraser" class="tool-img" id="eraser-img"
+                        onclick="handleLocalToolChange('eraser')">
+
+                    <div class=" tool-options eraser">
+                        <div class="pencil-size">
+                            <input type="range" id="eraser-size" min="5" max="30" value="5"
+                                onchange="handleSizeChange(this.value)">
+                        </div>
+                    </div>
                 </div>
-                <div class="tool ">
-                    <img src="icons/upload-photo.svg" alt="upload-photo" class="tool-img" id="upload-photo-img">
+                <div class="tool">
+                    <input type="file" name="" id="" class="input-img" accept="image/*">
+                    <img src="icons/upload-photo.svg" alt="upload-photo" class="tool-img upload-img"
+                        onclick="handleLocalToolChange('upload-img')">
+                </div>
+
+                <div class=" tool sticky-note">
+                    <img src=" icons/sticky-note.svg" alt="sticky-note" class="tool-img" id="sticky-note-img"
+                        onclick="handleLocalToolChange('sticky-note')">
+                </div>
+
+                <div class="tool zoom-in">
+                    <img src="icons/zoom-in.svg" alt="zoom-in" class="tool-img" id="zoom-in-img"
+                        onclick="handleLocalToolChange('zoom-in')">
+                </div>
+
+                <div class=" tool zoom-out">
+                    <img src=" icons/zoom-out.svg" alt="zoom-out" class="tool-img" id="zoom-out-img "
+                        onclick="handleLocalToolChange('zoom-out')">
                 </div>
 
                 <div class="tool ">
-                    <img src="icons/sticky-note.svg" alt="sticky-note" class="tool-img" id="sticky-note-img">
+                    <img src="icons/download.svg" alt="download" class="tool-img" id="download-img"
+                        onclick="handleLocalToolChange('download')">
                 </div>
 
-                <div class="tool ">
-                    <img src="icons/zoom-in.svg" alt="zoom-in" class="tool-img" id="zoom-in-img">
+                <div class=" tool undo">
+                    <img src=" icons/undo.svg" alt="undo" class="tool-img" id="undo-img">
                 </div>
-
-                <div class="tool ">
-                    <img src="icons/zoom-out.svg" alt="zoom-out" class="tool-img" id="zoom-out-img">
-                </div>
-
-                <div class="tool ">
-                    <img src="icons/download.svg" alt="download" class="tool-img" id="download-img">
-                </div>
-
-                <div class="tool ">
-                    <img src="icons/undo.svg" alt="undo" class="tool-img" id="undo-img">
-                </div>
-                <div class="tool ">
+                <div class="tool redo">
                     <img src="icons/undo.svg" alt="redo" class="tool-img" id="redo-img">
                 </div>
-
-
-
-
-
-
             </div>
-            <!-- <canvas></canvas> -->
         </div>
+        <canvas class="board"></canvas>
+    </div>
+
+    <script src="./js/tool.js"></script>
+    <script src="./js/utilities/common.js"></script>
+    <script src="./js/draw.js"></script>
+    <script src="./js/zoom.js"></script>
+    <script src="./js/image-uplaod.js"></script>
+    <script src="./js/stickynote.js"></script>
 
 </body>
 

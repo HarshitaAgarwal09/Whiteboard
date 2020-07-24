@@ -1,0 +1,87 @@
+ .close{
+    width:18px;
+    height:18px;
+    border-radius: 50px;
+    display: block;
+    /* background-color: red; */
+    background:url(../icons/close.svg); 
+    top:6px;
+    position: absolute;
+    right:10px;
+}
+
+.minimize{
+    display: block;
+    width: 18px;
+    height: 18px;
+    background:url(../icons/minimize.svg); 
+    top:6px;
+    position: absolute;
+    right:36px;
+}
+/* 
+stickyPad.setAttribute("class", "sticky-pad");
+navBar.setAttribute("class", "nav");
+writingPad.setAttribute("class", "writing-pad");
+minimize.setAttribute("class", "minimize");
+close.setAttribute("class", "close"); */
+
+.writing-pad{
+    position: absolute;
+    width: 100%;
+    /* max-height:200px;
+    max-width:246px; */
+}
+
+.sticky-pad{
+    z-index:40;
+    width:200px;
+    height: 230px;
+
+    /* min-width: 246px; */
+    /* max-height: 200px;
+    max-width: 246px; */
+    padding-top: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 0 15px 0 15px;
+    box-shadow: 9px 8px 18px 3px rgba(0, 0, 0, 0.4); 
+}
+
+.sticky-pad .nav{
+    z-index: 50;
+    height:40px;
+    width: 100%;
+    position: absolute;
+    top:0;
+    background-color: blueviolet;
+    left:0;
+}
+
+.sticky-pad textarea, .sticky-pad img{
+    width: 200px;
+    height: 200px;
+
+    padding: 10px;
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    text-align: center;
+    color:gray;
+}
+
+.writing-pad{
+    position: absolute;
+    box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.nav:hover{
+    cursor: move;
+}
+.minimize:hover{
+    cursor: pointer;
+    }
+    .close:hover{
+    cursor: pointer;
+    }
