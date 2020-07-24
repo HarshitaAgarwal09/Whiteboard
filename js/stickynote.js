@@ -102,26 +102,3 @@ function createBox() {
 
 }
 
-
-// document.querySelector(".container").addEventListener("click", function () {
-//     console.log("click")
-// })
-
-// document.querySelector(".container").addEventListener("touchstart", function () {
-//     console.log("touchstart")
-// })
-// document.querySelector(".container").addEventListener("touchmove", function () {
-//     console.log("touchmove")
-// })
-// document.querySelector(".container").addEventListener("touchend", function () {
-//     console.log("touchend")
-// })
-// document.querySelector(".container").addEventListener("touchenter", function () {
-//     console.log("touchenter")
-// })
-// document.querySelector(".container").addEventListener("touchleave", function () {
-//     console.log("touchleave")
-// })
-// document.querySelector(".container").addEventListener("touchcancel", function () {
-//     console.log("touchcancel")
-// })

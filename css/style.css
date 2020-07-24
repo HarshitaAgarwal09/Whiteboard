@@ -161,6 +161,7 @@ input[type=color]{
 
 .board{
     cursor: crosshair;
+    border: 1px solid lightgrey;
 }
 
 .pencil-cursor{

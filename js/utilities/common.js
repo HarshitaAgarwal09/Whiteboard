@@ -55,7 +55,6 @@ const inputs = document.querySelectorAll("input[type=range]");
 function handleToolChange(tool) {
 
     if (tool == "pencil") {
-        console.log(inputs);
         if (ActiveTool == "pencil") {//toggle show option
             isActivePenOp = !isActivePenOp;
         }

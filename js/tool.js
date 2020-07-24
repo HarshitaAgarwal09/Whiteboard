@@ -7,13 +7,10 @@
 //board = canvas
 const board = document.querySelector(".board");
 
-document.querySelector("body").height = window.innerHeight
-document.querySelector("body").width = window.innerWidth;
 //canvas dimension = window dimension
 board.height = window.innerHeight;
 board.width = window.innerWidth;
 
-console.log(window.innerHeight + " " + window.innerWidth);
 //canvas Rendering context 2d => tool
 const ctx = board.getContext("2d");
 //pencil color

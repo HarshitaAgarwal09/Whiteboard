@@ -102,7 +102,6 @@ function redraw() {
 }
 
 function getLocation() {
-    // console.log(board.getBoundingClientRect());
     const { top } = board.getBoundingClientRect();
     return top;
 }
